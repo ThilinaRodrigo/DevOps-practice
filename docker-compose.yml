@@ -1,0 +1,20 @@
+version: '3.8'
+
+services:
+  app:
+    image: thilinarodrigo/hello-api:latest
+    container_name: hello-api
+    restart: always
+    expose:
+      - "8080"
+
+  nginx:
+    image: nginx:latest
+    container_name: nginx
+    restart: always
+    ports:
+      - "80:80"
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf
+    depends_on:
+      - app
